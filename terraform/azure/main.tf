@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "web" {
-  name     = "nader-gs-2"
+  name     = "lucas-gs-2"
   location = "East US"
 }
 
