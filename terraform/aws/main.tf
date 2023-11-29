@@ -126,7 +126,7 @@ resource "aws_lb" "lb" {
 }
 
 resource "aws_lb_target_group" "tg" {
-  name     = "tg-lcs-sub"
+  name     = "tg-lcs0-sub"
   protocol = "HTTP"
   port     = "80"
   vpc_id   = aws_vpc.web.id
