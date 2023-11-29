@@ -9,12 +9,20 @@ resource "aws_subnet" "web-1" {
   cidr_block              = "172.0.2.0/24"
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
+
+  tags =  {
+    name = "subnet1"
+  }
 }
 resource "aws_subnet" "web-2" {
   vpc_id                  = aws_vpc.web.id
   cidr_block              = "172.0.3.0/24"
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
+
+    tags =  {
+    name = "subnet2"
+  }
 }
 
 
@@ -41,7 +49,7 @@ resource "aws_route_table_association" "web-2" {
 
 resource "aws_security_group" "web" {
   name        = "web"
-  description = "Allow web inbound traffic"
+  description = "SEJA OQ DEUS QUISER SGP 1"
   vpc_id      = aws_vpc.web.id
 
   ingress {
@@ -80,20 +88,45 @@ resource "aws_instance" "web-2" {
   user_data                   = base64encode(data.template_file.user_data.rendered)
 
 }
+
+resource "aws_instance" "web-3" {
+  ami                         = "ami-0230bd60aa48260c6"
+  instance_type               = "t2.micro"
+  availability_zone           = "us-east-1b"
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.web-2.id
+  vpc_security_group_ids      = [aws_security_group.web.id]
+  user_data                   = base64encode(data.template_file.user_data.rendered)
+
+}
+
+resource "aws_instance" "web-4" {
+  ami                         = "ami-0230bd60aa48260c6"
+  instance_type               = "t2.micro"
+  availability_zone           = "us-east-1b"
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.web-2.id
+  vpc_security_group_ids      = [aws_security_group.web.id]
+  user_data                   = base64encode(data.template_file.user_data.rendered)
+
+}
+
+
+
 data "template_file" "user_data" {
   template = file("./script/user_data.sh")
 
 }
 
 resource "aws_lb" "lb" {
-  name               = "lb-lcs"
+  name               = "lb-lcs-sub"
   load_balancer_type = "application"
   subnets            = [aws_subnet.web-1.id, aws_subnet.web-2.id]
   security_groups    = [aws_security_group.web.id]
 }
 
 resource "aws_lb_target_group" "tg" {
-  name     = "tg-lucass"
+  name     = "tg-lcs-sub"
   protocol = "HTTP"
   port     = "80"
   vpc_id   = aws_vpc.web.id
