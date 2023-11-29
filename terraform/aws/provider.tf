@@ -21,9 +21,13 @@ terraform {
     
   #   region         = "us-east-1"
   # }
-
 }
 
 provider "aws" {
   region  = "us-east-1"
 }
+
+resource "aws_vpc" "web" {
+  cidr_block = "172.0.0.0/16"
+}
+
