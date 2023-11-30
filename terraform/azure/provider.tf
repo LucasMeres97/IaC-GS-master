@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "rg-kinha"
-    storage_account_name = "lcs157"
+    resource_group_name  = "rg-luquinha"
+    storage_account_name = "lcs1997"
     container_name       = "tfstate1"
     key                  = "terraform.tfstate"
   }
