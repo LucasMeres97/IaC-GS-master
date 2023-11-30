@@ -119,14 +119,14 @@ data "template_file" "user_data" {
 }
 
 resource "aws_lb" "lb" {
-  name               = "lb-lcs1-sub"
+  name               = "lb-lcs-sub"
   load_balancer_type = "application"
   subnets            = [aws_subnet.web-1.id, aws_subnet.web-2.id]
   security_groups    = [aws_security_group.web.id]
 }
 
 resource "aws_lb_target_group" "tg" {
-  name     = "tg-lcs2-sub"
+  name     = "tg-lcs-sub"
   protocol = "HTTP"
   port     = "80"
   vpc_id   = aws_vpc.web.id
