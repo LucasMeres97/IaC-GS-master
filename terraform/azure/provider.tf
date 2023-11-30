@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "meres-gs"
-    storage_account_name = "meresgs"
-    container_name       = "load"
+    resource_group_name  = "rg-kinha"
+    storage_account_name = "lcs157"
+    container_name       = "tfstate1"
     key                  = "terraform.tfstate"
   }
 }
