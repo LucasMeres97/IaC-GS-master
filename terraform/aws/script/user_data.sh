@@ -11,7 +11,7 @@ sudo systemctl enable httpd
     
 echo "Install application"
 cd /tmp
-git clone https://github.com/NaderSouza/IaC-GS
+git clone https://github.com/LucasMeres97/IaC-GS-master.git
 mkdir /var/www/html
 cp /tmp/IaC-GS/app/*.html /var/www/html
 
